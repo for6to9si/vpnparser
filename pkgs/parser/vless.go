@@ -52,6 +52,7 @@ func (that *ParserVless) Parse(rawUri string) {
 			RealityPublicKey: query.Get("pbk"),
 			PacketEncoding:   query.Get("packetEncoding"),
 			TCPHeaderType:    query.Get("headerType"),
+			Mode:             query.Get("mode"),
 		}
 	}
 }

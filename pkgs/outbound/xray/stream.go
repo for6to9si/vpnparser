@@ -147,11 +147,18 @@ var XrayStreamHTTP string = `{
 	"path": ""
 }`
 
+
 var XrayStreamGRPC string = `{
 	"serviceName": "",
 	"multiMode": false
-}`
+	}`
 
+var XrayStreamXHTTP string = `{
+	"host": "",
+	"mode": "auto",
+	"path": "/"
+}`
+	
 func PrepareStreamString(sf *parser.StreamField) string {
 	stream := gjson.New(XrayStream)
 	stream.Set("network", sf.Network)
@@ -190,6 +197,19 @@ func PrepareStreamString(sf *parser.StreamField) string {
 		}
 		j.Set("multiMode", multiMode)
 		stream = utils.SetJsonObjectByString("grpcSettings", j.MustToJsonString(), stream)
+	case "xhttp":
+		j := gjson.New(XrayStreamXHTTP)
+		if sf.Path != "" {
+			j.Set("path", sf.Path)
+		}
+		if sf.Mode != "" {
+			j.Set("mode", sf.Mode)
+		}
+		if sf.Host != "" {
+			j.Set("host", sf.Host)
+		}
+
+		stream = utils.SetJsonObjectByString("xhttpSettings", j.MustToJsonString(), stream)
 	default:
 		return "{}"
 	}

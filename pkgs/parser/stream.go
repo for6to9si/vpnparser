@@ -16,4 +16,5 @@ type StreamField struct {
 	RealitySpiderX   string
 	RealityPublicKey string
 	PacketEncoding   string
+	Mode             string
 }
