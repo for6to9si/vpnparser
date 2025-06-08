@@ -18,6 +18,10 @@ jobs:
         arch: [amd64, arm64, 386]
         os: [windows, linux, darwin]
 
+        exclude: 
+          - goos: darwin
+            goarch: 386
+
     steps:
 
       - name: Checkout code
