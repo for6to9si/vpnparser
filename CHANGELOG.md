@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/M-logique/vpnparser/compare/v1.1.0...v1.1.1) (2025-06-08)
+
+### 🔥 Hot Fixes
+
+* remove deprecated sendThrough field from Xray configuration ([8cbc71f](https://github.com/M-logique/vpnparser/commit/8cbc71faa1a56b09957808f05ee806b6f74c4752))
+
 ## [1.1.0](https://github.com/M-logique/vpnparser/compare/v1.0.1...v1.1.0) (2025-06-08)
 
 ### 🚀 Features
