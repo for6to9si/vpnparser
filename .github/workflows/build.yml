@@ -15,11 +15,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [amd64, arm64, 386]
+        arch: [amd64, arm64, 386, arm]
         os: [windows, linux, darwin]
         exclude: 
           - os: darwin
             arch: 386
+          - os: darwin
+            arch: arm
 
     steps:
 
