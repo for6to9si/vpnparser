@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/gogf/gf/v2/encoding/gjson"
-	"github.com/gvcgo/vpnparser/pkgs/outbound"
+	"github.com/M-logique/vpnparser/pkgs/outbound"
 	cli "github.com/urfave/cli/v2"
 )
 

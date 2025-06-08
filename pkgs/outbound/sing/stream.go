@@ -7,8 +7,8 @@ import (
 
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gvcgo/vpnparser/pkgs/parser"
-	"github.com/gvcgo/vpnparser/pkgs/utils"
+	"github.com/M-logique/vpnparser/pkgs/parser"
+	"github.com/M-logique/vpnparser/pkgs/utils"
 )
 
 /*
