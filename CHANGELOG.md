@@ -1,3 +1,17 @@
+## [1.0.1](https://github.com/M-logique/vpnparser/compare/v1.0.0...v1.0.1) (2025-06-08)
+
+### 🐛 Bug Fixes
+
+* Empty fix commit to trigger the release ([c92fe3a](https://github.com/M-logique/vpnparser/commit/c92fe3a2e62d2cf4835361fbf86d12f5fbf96108))
+
+### 📚 Documentation
+
+* add download link for releases page in README ([1fd619e](https://github.com/M-logique/vpnparser/commit/1fd619ec449074e63a08decce20094dc83252d3d))
+
+### 🔄 CI/CD
+
+* add arm architecture to build workflow matrix ([9567acd](https://github.com/M-logique/vpnparser/commit/9567acd0db6a003a624135167c44fb78af9c88f0))
+
 ## 1.0.0 (2025-06-08)
 
 ### 🐛 Bug Fixes
