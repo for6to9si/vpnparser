@@ -34,12 +34,14 @@ type ParserVmess struct {
 
 func (that *ParserVmess) Parse(rawUri string) {
 	r := strings.ReplaceAll(rawUri, SchemeVmess, "")
+	var toParse string
 	decoded, err := base64.StdEncoding.DecodeString(r)
 	if err != nil {
-		fmt.Println(err)
-		return
+		toParse = r
+	} else {
+		toParse = string(decoded)
 	}
-	j := gjson.New(string(decoded))
+	j := gjson.New(toParse)
 	if j == nil {
 		return
 	}
