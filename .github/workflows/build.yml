@@ -17,10 +17,9 @@ jobs:
       matrix:
         arch: [amd64, arm64, 386]
         os: [windows, linux, darwin]
-
         exclude: 
-          - goos: darwin
-            goarch: 386
+          - os: darwin
+            arch: 386
 
     steps:
 
