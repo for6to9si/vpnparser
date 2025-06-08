@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -33,7 +34,12 @@ type ParserVmess struct {
 
 func (that *ParserVmess) Parse(rawUri string) {
 	r := strings.ReplaceAll(rawUri, SchemeVmess, "")
-	j := gjson.New(r)
+	decoded, err := base64.StdEncoding.DecodeString(r)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	j := gjson.New(string(decoded))
 	if j == nil {
 		return
 	}
