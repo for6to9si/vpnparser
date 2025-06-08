@@ -58,7 +58,6 @@ moqsien> .\vpnparser.exe x '"vmess://{\"add\":\"us47.encrypted.my.id\",\"port\":
 vmess://{"add":"us47.encrypted.my.id","port":"80","id":"4bf9b7e0-85d1-4a59-9a29-e6619dcd7c50","aid":"0","scy":"auto","net":"ws","v":"2","ps":"美国_0828698","host":"","path":"/pSAXxD8Ib7FZloqUMG","tls":"","sni":"","type":"none","serverPort":0,"nation":"🇺🇸US"}
 {
         "protocol": "vmess",
-        "sendThrough": "0.0.0.0",
         "settings": {
                 "vnext": [
                         {

@@ -12,7 +12,6 @@ https://xtls.github.io/config/outbound.html#outboundobject
 {
   "outbounds": [
     {
-      "sendThrough": "0.0.0.0",
       "protocol": "协议名称",
       "settings": {outbound设置},
       "tag": "标识",
@@ -27,7 +26,6 @@ https://xtls.github.io/config/outbound.html#outboundobject
 */
 
 var XrayOut string = `{
-  "sendThrough": "0.0.0.0",
   "protocol": "协议名称",
   "tag": "标识",
   "settings": %s,
