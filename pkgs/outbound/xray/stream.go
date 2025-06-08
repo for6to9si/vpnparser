@@ -158,7 +158,12 @@ var XrayStreamXHTTP string = `{
 	"mode": "auto",
 	"path": "/"
 }`
-	
+
+var XrayStreamHTTPUpgrade string = `{
+	"host": "",
+	path: "/"
+}`
+
 func PrepareStreamString(sf *parser.StreamField) string {
 	stream := gjson.New(XrayStream)
 	stream.Set("network", sf.Network)
@@ -210,6 +215,16 @@ func PrepareStreamString(sf *parser.StreamField) string {
 		}
 
 		stream = utils.SetJsonObjectByString("xhttpSettings", j.MustToJsonString(), stream)
+	
+	case "httpupgrade":
+		j := gjson.New(XrayStreamHTTPUpgrade)
+		if sf.Path != "" {
+			j.Set("path", sf.Path)
+		}
+		if sf.Host != "" {
+			j.Set("host", sf.Host)
+		}
+		stream = utils.SetJsonObjectByString("httpupgradeSettings", j.MustToJsonString(), stream)
 	default:
 		return "{}"
 	}
