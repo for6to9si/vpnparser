@@ -51,7 +51,6 @@ func init() {
 			}
 			ob := outbound.GetOutbound(outbound.SingBox, rawUri)
 			ob.Parse(rawUri)
-			fmt.Println(rawUri)
 			ShowOutboundStr(ob.GetOutboundStr())
 			return nil
 		},
@@ -68,7 +67,6 @@ func init() {
 			}
 			ob := outbound.GetOutbound(outbound.XrayCore, rawUri)
 			ob.Parse(rawUri)
-			fmt.Println(rawUri)
 			ShowOutboundStr(ob.GetOutboundStr())
 			return nil
 		},
