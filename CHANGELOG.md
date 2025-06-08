@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/M-logique/vpnparser/compare/v1.0.1...v1.1.0) (2025-06-08)
+
+### 🚀 Features
+
+* add HTTP upgrade settings to Xray stream configuration ([261b44e](https://github.com/M-logique/vpnparser/commit/261b44ec4d763429674a202786960df06d325a77))
+
 ## [1.0.1](https://github.com/M-logique/vpnparser/compare/v1.0.0...v1.0.1) (2025-06-08)
 
 ### 🐛 Bug Fixes
