@@ -33,11 +33,6 @@ jobs:
         if: ${{inputs.release == true}}
         with:
           node-version: '22'
-
-      - name: Set up python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.12'
       
       - name: Install semantic-release dependencies
         if: ${{inputs.release == true}}
