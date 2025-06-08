@@ -6,6 +6,7 @@ Vpnparser parses VPN URI to sing-box/xray-core Outbound.
 ```bash
 go install github.com/M-logique/vpnparser@latest
 ```
+or simply download it from [releases page](https://github.com/M-logique/vpnparser/releases/latest)
 
 ## commands
 
