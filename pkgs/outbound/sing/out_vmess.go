@@ -61,7 +61,7 @@ var SingVmess string = `{
 	"uuid": "bf000d23-0752-40b4-affe-68f7707a9661",
 	"security": "auto",
 	"alter_id": 0
-`
+}`
 
 type SVmessOut struct {
 	RawUri   string

@@ -123,6 +123,11 @@ var SingReality string = `{
 	"short_id": ""
 }`
 
+var SingObfs string = `{
+	"type": "",
+	"password": ""
+}`
+
 func PrepareStreamStr(cnf *gjson.Json, sf *parser.StreamField) (result *gjson.Json) {
 	var tp string
 	switch sf.Network {

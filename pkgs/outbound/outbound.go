@@ -46,6 +46,8 @@ func GetOutbound(clientType ClientType, rawUri string) (result IOutbound) {
 			result = &sing.SShadowSocksROut{RawUri: rawUri}
 		case parser.SchemeWireguard:
 			result = &sing.SWireguardOut{RawUri: rawUri}
+		case parser.SchemeHy2, parser.SchemeHysteria2:
+			result = &sing.SHysteria2Out{RawUri: rawUri}
 		default:
 			fmt.Println("unsupported protocol: ", scheme)
 		}
