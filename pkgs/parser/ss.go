@@ -1,10 +1,13 @@
 package parser
 
 import (
+	"encoding/base64"
 	"fmt"
 	"net/url"
 	"strconv"
 	"strings"
+
+	"github.com/M-logique/vpnparser/pkgs/utils"
 )
 
 var SSMethod map[string]struct{} = map[string]struct{}{
@@ -55,6 +58,8 @@ func (that *ParserSS) Parse(rawUri string) {
 		that.StreamField = &StreamField{}
 		that.Address = u.Hostname()
 		that.Port, _ = strconv.Atoi(u.Port())
+
+
 		that.Method = u.User.Username()
 		if that.Method == "rc4" {
 			that.Method = "rc4-md5"
@@ -76,7 +81,38 @@ func (that *ParserSS) Parse(rawUri string) {
 }
 
 func (that *ParserSS) handleSS(rawUri string) string {
-	return strings.ReplaceAll(rawUri, "#ss#\u00261@", "@")
+	rawUri = strings.ReplaceAll(rawUri, "#ss#\u00261@", "@")
+
+	u, err := url.Parse(rawUri)
+	if err != nil {
+		fmt.Println(1)
+		return rawUri
+	}
+	if !strings.Contains(rawUri, "@") {
+		fmt.Println(2)
+		u.Scheme = ""
+		u.Fragment = ""
+
+		body := strings.Trim(u.String(), "/")
+		fmt.Println(body)
+
+		if decoded, err := base64.StdEncoding.DecodeString(utils.ResoveBase64Padding(body)); err == nil {
+			rawUri = strings.Replace(rawUri, body, string(decoded), 1)
+			fmt.Println(rawUri)
+		} else {
+			fmt.Println(err)
+		}
+	} else {
+		username := u.User.Username()
+
+		if decoded, err := base64.StdEncoding.DecodeString(utils.ResoveBase64Padding(username)); err == nil {
+			rawUri = strings.Replace(rawUri, username, string(decoded), 1)
+		} else {
+			fmt.Println(err)
+		}
+	}
+
+	return rawUri
 }
 
 func (that *ParserSS) GetAddr() string {

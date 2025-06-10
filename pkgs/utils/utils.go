@@ -29,3 +29,17 @@ func ParseScheme(rawUri string) (scheme string) {
 	}
 	return
 }
+
+func ResoveBase64Padding(s string) string {
+	if len(s) % 4 == 0 {
+		return s
+	}
+
+	paddingNeeded := (4 - (len(s) % 4)) % 4
+
+	for i := 0; i < paddingNeeded; i++ {
+		s += "="
+	}
+
+	return s
+}
