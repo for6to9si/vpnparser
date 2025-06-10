@@ -1,3 +1,13 @@
+## [1.2.0](https://github.com/M-logique/vpnparser/compare/v1.1.1...v1.2.0) (2025-06-10)
+
+### 🚀 Features
+
+* add support for Hysteria2 protocol and related parsing logic ([722e58f](https://github.com/M-logique/vpnparser/commit/722e58fef6847b78c121c358784c1a25f9d9c185))
+
+### 🚧 Refactors
+
+* refactor Hysteria2 configuration for improved readability and optional network setting ([c71b44d](https://github.com/M-logique/vpnparser/commit/c71b44d2d53d94055985cd84249086d7476fb1a3))
+
 ## [1.1.1](https://github.com/M-logique/vpnparser/compare/v1.1.0...v1.1.1) (2025-06-08)
 
 ### 🔥 Hot Fixes
