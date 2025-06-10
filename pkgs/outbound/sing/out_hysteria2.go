@@ -34,21 +34,16 @@ https://sing-box.sagernet.org/zh/configuration/outbound/hysteria2/
 */
 
 var SingHysteria2 string = `{
-  "type": "hysteria2",
-  "tag": "hy2-out",
-
-  "server": "127.0.0.1",
-  "server_port": 1080,
-  "up_mbps": 100,
-  "down_mbps": 100,
-  "obfs": {
-    "type": "salamander",
-    "password": "cry_me_a_r1ver"
-  },
-  "password": "goofy_ahh_password",
-  "network": "tcp",
-  "tls": {},
-  "brutal_debug": false
+    "type": "hysteria2",
+    "tag": "hy2-out",
+    "server": "127.0.0.1",
+    "server_port": 1080,
+    "obfs": {
+        "type": "salamander",
+        "password": "cry_me_a_r1ver"
+    },
+    "password": "goofy_ahh_password",
+    "tls": {},
 }`
 
 type SHysteria2Out struct {
@@ -99,14 +94,15 @@ func (that *SHysteria2Out) getSettings() string {
         j.Set("down_mbps", that.Parser.DownMbps)
     }
     j.Set("password", that.Parser.Password)
-    j.Set("network", that.Parser.Network)
+    if that.Parser.Network != "" {
+        j.Set("network", that.Parser.Network)
+    }
     
     j.Set("obfs.type", "")
     if that.Parser.ObfPassword != "" && that.Parser.ObfType != "" {
         j.Set("obfs.type", that.Parser.ObfType)
         j.Set("obfs.password", that.Parser.ObfPassword)
     }
-    j.Set("brutal_debug", that.Parser.BrutalDebug)
 
     j.Set("tag", utils.OutboundTag)
     return j.MustToJsonString()
