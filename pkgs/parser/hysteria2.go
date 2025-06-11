@@ -9,12 +9,9 @@ import (
 type ParserHysteria2 struct {
 	Address        string
 	Port           int
-	ServerPorts   []string
-	HopInterval   string
 	UpMbps        int
 	DownMbps      int
 	Password      string
-	BrutalDebug   bool
 	ObfType       string
 	ObfPassword   string
 
@@ -34,9 +31,6 @@ func (that *ParserHysteria2) Parse(rawURI string) {
 		that.Password = r.User.Username()
 
 		query := r.Query()
-		if query.Get("hop-interval") != "" {
-			that.HopInterval = query.Get("hop-interval")
-		}
 
 		if _, ok := ObfsTypes[query.Get("obfs")]; ok {
 			that.ObfPassword = query.Get("obfs-password")
