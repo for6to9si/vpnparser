@@ -47,9 +47,9 @@ var SingHysteria2 string = `{
 }`
 
 type SHysteria2Out struct {
-  RawUri  string
-  Parser  *parser.ParserHysteria2
-  outbound string
+    RawUri  string
+    Parser  *parser.ParserHysteria2
+    outbound string
 }
 
 func (that *SHysteria2Out) Addr() string {
