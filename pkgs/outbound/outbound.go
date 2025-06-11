@@ -31,6 +31,7 @@ func GetOutbound(clientType ClientType, rawUri string) (result IOutbound) {
 			result = &xray.ShadowSocksOut{RawUri: rawUri}
 		default:
 			fmt.Println("unsupported protocol: ", scheme)
+			return
 		}
 	case SingBox:
 		switch scheme {
@@ -48,8 +49,11 @@ func GetOutbound(clientType ClientType, rawUri string) (result IOutbound) {
 			result = &sing.SWireguardOut{RawUri: rawUri}
 		case parser.SchemeHy2, parser.SchemeHysteria2:
 			result = &sing.SHysteria2Out{RawUri: rawUri}
+		case parser.SchemeHysteria:
+			result = &sing.SHysteriaOut{RawUri: rawUri}
 		default:
 			fmt.Println("unsupported protocol: ", scheme)
+			return
 		}
 	default:
 		fmt.Println("unsupported client type")

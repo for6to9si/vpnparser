@@ -17,6 +17,7 @@ const (
 	SchemeWireguard string = "wireguard://"
 	SchemeHy2       string = "hy2://"
 	SchemeHysteria2 string = "hysteria2://"
+	SchemeHysteria  string = "hysteria://"
 )
 
 func GetVpnScheme(rawUri string) string {
