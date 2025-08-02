@@ -1,6 +1,6 @@
 module github.com/for6to9si/vpnparser
 
-go 1.20
+go 1.24
 
 require (
 	github.com/gogf/gf/v2 v2.6.1

@@ -1,8 +1,8 @@
 package sing
 
 import (
-	"github.com/M-logique/vpnparser/pkgs/parser"
-	"github.com/M-logique/vpnparser/pkgs/utils"
+	"github.com/for6to9si/vpnparser/pkgs/parser"
+	"github.com/for6to9si/vpnparser/pkgs/utils"
 	"github.com/gogf/gf/v2/encoding/gjson"
 )
 
@@ -47,9 +47,9 @@ var SingHysteria2 string = `{
 }`
 
 type SHysteria2Out struct {
-    RawUri  string
-    Parser  *parser.ParserHysteria2
-    outbound string
+	RawUri   string
+	Parser   *parser.ParserHysteria2
+	outbound string
 }
 
 func (that *SHysteria2Out) Addr() string {
@@ -79,37 +79,36 @@ func (that *SHysteria2Out) Parse(rawUri string) {
 	that.Parser.Parse(rawUri)
 }
 
-
 func (that *SHysteria2Out) getSettings() string {
-    if that.Parser.Address == "" || that.Parser.Port == 0 {
-        return "{}"
-    }
+	if that.Parser.Address == "" || that.Parser.Port == 0 {
+		return "{}"
+	}
 
-    j := gjson.New(SingHysteria2) 
-    j.Set("type", "hysteria2")
-    j.Set("server", that.Parser.Address)
-    j.Set("server_port", that.Parser.Port)
-    if that.Parser.UpMbps != 0 && that.Parser.DownMbps != 0 {
-        j.Set("up_mbps", that.Parser.UpMbps)
-        j.Set("down_mbps", that.Parser.DownMbps)
-    }
-    j.Set("password", that.Parser.Password)
-    if that.Parser.Network != "" {
-        j.Set("network", that.Parser.Network)
-    }
-    
-    j.Set("obfs.type", "")
-    if that.Parser.ObfPassword != "" && that.Parser.ObfType != "" {
-        j.Set("obfs.type", that.Parser.ObfType)
-        j.Set("obfs.password", that.Parser.ObfPassword)
-    }
+	j := gjson.New(SingHysteria2)
+	j.Set("type", "hysteria2")
+	j.Set("server", that.Parser.Address)
+	j.Set("server_port", that.Parser.Port)
+	if that.Parser.UpMbps != 0 && that.Parser.DownMbps != 0 {
+		j.Set("up_mbps", that.Parser.UpMbps)
+		j.Set("down_mbps", that.Parser.DownMbps)
+	}
+	j.Set("password", that.Parser.Password)
+	if that.Parser.Network != "" {
+		j.Set("network", that.Parser.Network)
+	}
 
-    j.Set("tag", utils.OutboundTag)
-    return j.MustToJsonString()
+	j.Set("obfs.type", "")
+	if that.Parser.ObfPassword != "" && that.Parser.ObfType != "" {
+		j.Set("obfs.type", that.Parser.ObfType)
+		j.Set("obfs.password", that.Parser.ObfPassword)
+	}
+
+	j.Set("tag", utils.OutboundTag)
+	return j.MustToJsonString()
 }
 
 func (that *SHysteria2Out) GetOutboundStr() string {
-    if that.outbound == "" {
+	if that.outbound == "" {
 		settings := that.getSettings()
 		if settings == "{}" {
 			return ""

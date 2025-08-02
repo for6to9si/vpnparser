@@ -30,4 +30,3 @@ func main() {
 	// p := outbound.ParseRawUriToProxyItem(rawUri, outbound.SingBox)
 	// fmt.Println(p.GetOutbound())
 }
-

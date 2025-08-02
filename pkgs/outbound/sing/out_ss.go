@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/for6to9si/vpnparser/pkgs/parser"
+	"github.com/for6to9si/vpnparser/pkgs/utils"
 	"github.com/gogf/gf/v2/encoding/gjson"
-	"github.com/M-logique/vpnparser/pkgs/parser"
-	"github.com/M-logique/vpnparser/pkgs/utils"
 )
 
 /*

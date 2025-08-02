@@ -3,8 +3,8 @@ package sing
 import (
 	"encoding/base64"
 
-	"github.com/M-logique/vpnparser/pkgs/parser"
-	"github.com/M-logique/vpnparser/pkgs/utils"
+	"github.com/for6to9si/vpnparser/pkgs/parser"
+	"github.com/for6to9si/vpnparser/pkgs/utils"
 	"github.com/gogf/gf/v2/encoding/gjson"
 )
 
@@ -53,9 +53,9 @@ var SingHysteria string = `{
 }`
 
 type SHysteriaOut struct {
-    RawUri  string
-    Parser  *parser.ParserHysteria
-    outbound string
+	RawUri   string
+	Parser   *parser.ParserHysteria
+	outbound string
 }
 
 func (that *SHysteriaOut) Addr() string {
@@ -85,13 +85,12 @@ func (that *SHysteriaOut) Parse(rawUri string) {
 	that.Parser.Parse(rawUri)
 }
 
-
 func (that *SHysteriaOut) getSettings() string {
-    if that.Parser.Address == "" || that.Parser.Port == 0 {
-        return "{}"
-    }
+	if that.Parser.Address == "" || that.Parser.Port == 0 {
+		return "{}"
+	}
 
-    j := gjson.New(SingHysteria2) 
+	j := gjson.New(SingHysteria2)
 	j.Set("type", "hysteria")
 	j.Set("tag", utils.OutboundTag)
 	j.Set("up", that.Parser.Up)
@@ -99,7 +98,7 @@ func (that *SHysteriaOut) getSettings() string {
 	j.Set("down", that.Parser.Down)
 	j.Set("down_mbps", that.Parser.DownMbps)
 	j.Set("obfs", that.Parser.Obfs)
-	
+
 	j.Set("users.0.name", "user1")
 	authBase64 := base64.StdEncoding.EncodeToString([]byte(that.Parser.Auth))
 	j.Set("users.0.auth", authBase64)
@@ -109,7 +108,7 @@ func (that *SHysteriaOut) getSettings() string {
 }
 
 func (that *SHysteriaOut) GetOutboundStr() string {
-    if that.outbound == "" {
+	if that.outbound == "" {
 		settings := that.getSettings()
 		if settings == "{}" {
 			return ""

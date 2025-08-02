@@ -6,9 +6,9 @@ import (
 
 	"encoding/json"
 
+	"github.com/for6to9si/vpnparser/pkgs/parser"
+	"github.com/for6to9si/vpnparser/pkgs/utils"
 	"github.com/gvcgo/goutils/pkgs/gutils"
-	"github.com/M-logique/vpnparser/pkgs/parser"
-	"github.com/M-logique/vpnparser/pkgs/utils"
 )
 
 type Result struct {

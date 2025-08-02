@@ -3,10 +3,10 @@ package outbound
 import (
 	"fmt"
 
-	"github.com/M-logique/vpnparser/pkgs/outbound/sing"
-	"github.com/M-logique/vpnparser/pkgs/outbound/xray"
-	"github.com/M-logique/vpnparser/pkgs/parser"
-	"github.com/M-logique/vpnparser/pkgs/utils"
+	"github.com/for6to9si/vpnparser/pkgs/outbound/sing"
+	"github.com/for6to9si/vpnparser/pkgs/outbound/xray"
+	"github.com/for6to9si/vpnparser/pkgs/parser"
+	"github.com/for6to9si/vpnparser/pkgs/utils"
 )
 
 type ClientType string

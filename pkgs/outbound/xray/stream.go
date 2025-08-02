@@ -3,10 +3,10 @@ package xray
 import (
 	"strings"
 
+	"github.com/for6to9si/vpnparser/pkgs/parser"
+	"github.com/for6to9si/vpnparser/pkgs/utils"
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/M-logique/vpnparser/pkgs/parser"
-	"github.com/M-logique/vpnparser/pkgs/utils"
 )
 
 /*
@@ -147,7 +147,6 @@ var XrayStreamHTTP string = `{
 	"path": ""
 }`
 
-
 var XrayStreamGRPC string = `{
 	"serviceName": "",
 	"multiMode": false
@@ -215,7 +214,7 @@ func PrepareStreamString(sf *parser.StreamField) string {
 		}
 
 		stream = utils.SetJsonObjectByString("xhttpSettings", j.MustToJsonString(), stream)
-	
+
 	case "httpupgrade":
 		j := gjson.New(XrayStreamHTTPUpgrade)
 		if sf.Path != "" {

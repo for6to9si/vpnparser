@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/M-logique/vpnparser/pkgs/utils"
+	"github.com/for6to9si/vpnparser/pkgs/utils"
 )
 
 var SSMethod map[string]struct{} = map[string]struct{}{
@@ -58,7 +58,6 @@ func (that *ParserSS) Parse(rawUri string) {
 		that.StreamField = &StreamField{}
 		that.Address = u.Hostname()
 		that.Port, _ = strconv.Atoi(u.Port())
-
 
 		that.Method = u.User.Username()
 		if that.Method == "rc4" {
