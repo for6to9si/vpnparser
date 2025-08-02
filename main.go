@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/M-logique/vpnparser/pkgs/cmd"
-	_ "github.com/M-logique/vpnparser/pkgs/outbound/sing"
-	_ "github.com/M-logique/vpnparser/pkgs/outbound/xray"
-	_ "github.com/M-logique/vpnparser/pkgs/parser"
+	"github.com/for6to9si/vpnparser/pkgs/cmd"
+	_ "github.com/for6to9si/vpnparser/pkgs/outbound/sing"
+	_ "github.com/for6to9si/vpnparser/pkgs/outbound/xray"
+	_ "github.com/for6to9si/vpnparser/pkgs/parser"
 )
 
 func main() {
@@ -30,3 +30,4 @@ func main() {
 	// p := outbound.ParseRawUriToProxyItem(rawUri, outbound.SingBox)
 	// fmt.Println(p.GetOutbound())
 }
+
