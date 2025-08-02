@@ -1,4 +1,4 @@
-module github.com/M-logique/vpnparser
+module github.com/for6to9si/vpnparser
 
 go 1.20
 
