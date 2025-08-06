@@ -60,19 +60,6 @@ func replaceInvalidChars(name string) (string, error) {
 	return cleaned, nil
 }
 
-// isEmoji проверяет, является ли символ эмодзи
-func isEmoji(r rune) bool {
-	// Более точная проверка эмодзи (диапазоны Unicode для эмодзи)
-	return (r >= 0x1F600 && r <= 0x1F64F) || // Emoticons
-		(r >= 0x1F300 && r <= 0x1F5FF) || // Misc Symbols and Pictographs
-		(r >= 0x1F680 && r <= 0x1F6FF) || // Transport and Map
-		(r >= 0x2600 && r <= 0x26FF) || // Misc symbols
-		(r >= 0x2700 && r <= 0x27BF) || // Dingbats
-		(r >= 0xFE00 && r <= 0xFE0F) || // Variation Selectors
-		(r >= 0x1F900 && r <= 0x1F9FF) || // Supplemental Symbols and Pictographs
-		(r >= 0x1F1E6 && r <= 0x1F1FF) // Flags
-}
-
 func extractComment(input string) string {
 	// Разделяем строку по символу '#'
 	parts := strings.SplitN(input, "#", 2)
@@ -80,43 +67,6 @@ func extractComment(input string) string {
 		return parts[1]
 	}
 	return ""
-}
-
-func createFile(filename string) error {
-	// Очищаем имя файла от недопустимых символов
-	cleanedFilename := filename
-	if cleanedFilename == "" {
-		return fmt.Errorf("имя файла пустое после очистки")
-	}
-
-	// Проверяем длину имени файла
-	if len(cleanedFilename) > 255 {
-		cleanedFilename = cleanedFilename[:255]
-	}
-
-	// Создаём файл
-	file, err := os.Create(cleanedFilename)
-	if err != nil {
-		return fmt.Errorf("ошибка при создании файла '%s': %v", cleanedFilename, err)
-	}
-	defer file.Close()
-	return nil
-}
-
-// decodeURLComment декодирует URL-кодированную строку рекурсивно
-func decodeURLComment(comment string) (string, error) {
-	decoded := comment
-	for {
-		newDecoded, err := url.QueryUnescape(decoded)
-		if err != nil {
-			return "", fmt.Errorf("ошибка декодирования URL: %v", err)
-		}
-		if newDecoded == decoded {
-			break
-		}
-		decoded = newDecoded
-	}
-	return decoded, nil
 }
 
 // main function parses a VLESS URI and outputs formatted JSON
@@ -174,20 +124,26 @@ func main() {
 		if err := json.Unmarshal([]byte(config), &temp); err == nil {
 			// If config is a valid JSON string, re-serialize it with proper formattin
 			temp["tag"] = decodedComment
-			jsonData, err = json.MarshalIndent(temp, "", "  ")
+
+			// Создаем структуру с outbounds
+			outboundWrapper := map[string]interface{}{
+				"outbounds": []interface{}{temp},
+			}
+
+			jsonData, err = json.MarshalIndent(outboundWrapper, "", "  ")
 		} else {
 			// Если config не JSON, создаем новый объект
 			temp = map[string]interface{}{
 				"config": config,
 				"tag":    decodedComment,
 			}
-			// If config is not a JSON string, assume it's a struct and serialize it
-			jsonData, err = json.MarshalIndent(temp, "", "  ")
-		}
 
-		if err != nil {
-			fmt.Printf("Строка %d: Ошибка сериализации JSON: %v\n", i+1, err)
-			continue
+			// Обертываем в outbounds
+			outboundWrapper := map[string]interface{}{
+				"outbounds": []interface{}{temp},
+			}
+			// If config is not a JSON string, assume it's a struct and serialize it
+			jsonData, err = json.MarshalIndent(outboundWrapper, "", "  ")
 		}
 
 		// Print the formatted JSON to console
